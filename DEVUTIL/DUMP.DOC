@@ -1,0 +1,27 @@
+
+DUMP   hex file dump utility       v1.0  2/07/91            Info Tech Inc. cf
+
+USAGE: DUMP {options} InFile [OutFile]
+
+WHERE: InFile is any valid filename to dump.
+       OutFile is file to dump to. Default is InFile.BIN
+       {options} may be 0 or more of:
+        -d   ... Print offsets on decimal (default = hex)
+        -n   ... Don't print offsets at all
+        -z   ... Don't print high bytes in ascii representation
+        -t   ... Don't print ascii representation at right
+        -w   ... Group hex values as words (default = byte grouping)
+        -x   ... Don't print hex values at all
+        -k   ... Skip Duplicated lines
+        -h # ... Print header every # lines (0 = turn off, default = 16)
+        -s # ... Start dump at #
+        -e # ... End dump at #
+        -l # ... Dump # bytes from start (overrides /e)
+
+        -u   ... Rebuild file (built with no options!)
+       numbers may be represented in 3 ways:
+       123456 ... decimal (no leading 0)
+       012345 ... octal   (leading 0)
+       0x1234 ... hex     (leading 0x)
+
+EXAMPLE:  DUMP -s 0x0100 -l 255 -w dump.exe

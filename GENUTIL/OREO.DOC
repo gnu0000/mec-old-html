@@ -1,0 +1,13 @@
+OREO     Masters of ORION Save File Editor          v1.1  Sep 28 1994  21:50:24
+
+USAGE: OREO [options] [savefile]
+
+WHERE: [options]  Are 0 or more of:
+
+         /Lines=# .. Set Number of screen lines (25, 28, 50)
+         /V12 ...... Save files are from MOO ver 1.2 (default is auto detect)
+         /V10 ...... Save files are from MOO ver 1.0 (default is auto detect)
+         /? ........ This help
+
+       [savefile]  If specified is loaded immediately.  Masters of ORION
+             save files are of the form save?.GAM where ? is 1 through 7.

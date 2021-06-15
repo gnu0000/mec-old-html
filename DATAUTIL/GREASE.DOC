@@ -1,0 +1,23 @@
+GREASE   Text String Replacement Utility  v1.0    19:20:18  Mar 02 1992
+
+USAGE:   GREASE  Options  <FileName> [<FileName> ...]
+
+WHERE:   Options are 0 or more of:
+
+            -help -h -?              This help
+            -helpxlate               Help on xlatefile format
+            -r                       Recurse Subdirectories
+            -n                       Don't generate .bak files
+            -p                       Replace even partial strings
+            -q                       Query files before replacing
+            -l                       List Translations loaded only
+            -x <xlatefile>           Translation File
+            -t <translatestring>     Translation string
+
+         Filename is file to process. Wildcards OK.
+
+  Either -x or -t option must be used or matching files will
+  just be listed.
+
+EXAMPLE: Grease -r -t ".Bilbo Baggins.Frodo Baggins." -n Hobb*.doc Hobb*.txt
+

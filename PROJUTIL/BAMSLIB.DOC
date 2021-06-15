@@ -1,0 +1,15 @@
+BAMSLIB  BAMS Universal Library Manager      1.0a                   Aug 25 1995
+
+USAGE:  BAMSLIB [command] BAMSLibrary files...
+
+WHERE:  BAMSLibrary .. The library to process.
+        Files ....... The files to add/del/list...
+
+        command ..... Is one of the following:
+            /a ........ Add files to library.
+            /x ........ Extract files from library.
+            /l ........ List files in library.
+            /t ........ Test files in library.
+
+ type BAMSLIB /Examples  for some sample uses.
+ type BAMSLIB /FullHelp  for a more complete options list.

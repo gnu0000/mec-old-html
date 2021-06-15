@@ -1,0 +1,18 @@
+MakePage  Simple WEB page creation utility                Aug 28 1996
+
+USAGE:  MakePage [options] infile [outfile]
+
+WHERE:  infile .... is the name of the flat text to make a page with.
+        outfile ... If specified, is the name of the html page.
+                     If not given, the input file + '.htm' is used.
+
+        [options] are 0 or more of:
+           /? ................ This help.
+           /Pre=file ......... Use this HTML prefix file.
+           /Post=file ........ Use this HTML suffix file.
+
+
+for example I use:
+for %x in (*.c) MAKEPAGE /Post=ebspost.htm %x
+This makes the set of EBS source html pages
+

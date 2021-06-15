@@ -1,0 +1,25 @@
+
+CvtDlg   Windows to OS/2 Dialog Conversion Util.      (C)ITI  v1.00 Feb 25 1991
+
+USAGE: CVTDLG [options] InFiles
+
+WHERE: InFiles ... Windows DLG file list, wildcards ok
+       [options] . 0 or more of:
+
+   -xlate ........ Show Translation Table
+   -verbose ...... Verbose Messages
+   -noinclude .... Don't put #include <os2.h> in OutputFile
+   -header ....... assume WIN dlg name #defined to OS/2 ID in header
+   -x # .......... specify new horizontal scale (treated as percentage)
+   -y # .......... specify new vertical scale (treated as percentage)
+   -pos # ........ specify new starting y pos (default = 40)
+   -dlgval # ..... use # as 1st dialog ID (overridden by -header)
+   -include FName. add #include "FName" to OutputFile
+   -class FName .. add to or override Default class translations
+   -style FName .. add to or override style translations
+
+     If the input file has an extension of DLG, it's output file will have the
+   extension of OS2. Otherwise, the output file will have the extension of DLG.
+     The file format of 'FName' for the -class and -style options is the same
+   as that produced by the -xlate option. blank lines and lines starting with a
+   semicolon ';' are ignored.  New entrys take precedence over old ones.

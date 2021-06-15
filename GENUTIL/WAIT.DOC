@@ -1,0 +1,16 @@
+WAIT       DOS Version           May 28 1991
+
+USAGE:     WAIT [-?#fhkqux] [message]
+
+WHERE:     -?  This help.
+           -#  Delay to timeout in seconds, default is 60.
+           -f  Wait forever for key, no timeout.
+           -h  This help.
+           -k  Ignore Keyboard, always timeout.
+           -n  no processing of \a \b \f \n \r \t \v \x00 in msg.
+           -q  quiet mode. do not display msg.
+           -u  convert char read to uppercase.
+           -x  strip high bit from message params.
+
+This program waits for a key and returns its ascii value.
+

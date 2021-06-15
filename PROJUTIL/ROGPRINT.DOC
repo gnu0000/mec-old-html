@@ -1,0 +1,15 @@
+
+ROGPRINT     file printer  v1.0          Apr 18 1995
+
+USAGE: ROGPRINT {options} files ...
+
+WHERE: {options} are 0 or more of:
+   /Portrait ...... Print the files in portrait mode.
+   /Landscape ..... Print the files in landscape.
+   /OutFile=fname . Send output files to this file here.
+
+   and files is the list of files to print.
+
+   Minimal param matching is supported (i.e. /P is sufficient for portrait).
+   This program also appends \r to all \f 's.
+   For further information see Roger!

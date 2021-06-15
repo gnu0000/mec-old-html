@@ -1,0 +1,6 @@
+This program clears nulls from a file and converts them to spaces.
+
+USAGE: CLEARNUL File
+
+WHERE: File - is the file to convert.
+

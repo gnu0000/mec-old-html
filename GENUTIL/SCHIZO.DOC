@@ -1,0 +1,17 @@
+SCHIZO       Text file scrambler    v2.1                Jun 12 1996  17:06:36
+
+USAGE:  SCHIZO [options] InputFile [OutputFile]
+
+WHERE:  InputFile .... Text file to read and contemplate.
+        OutputFile ... The file that is generated.  If not specified the
+                         InputFile name with a .OUT extension is used.
+
+        [options] are 0 or more of:
+
+          /Seed=# ......... Specify random number seed.
+          /Convergence=# .. Specify screwedupidness in percent [0-100].
+                            100=original file, 0=messed up. Default is 0.
+
+   EXAMPLE: SCHIZO readme.txt
+   In this example, the file readme.txt is read in and the file readme.out
+   is created with the text re-arranged.

@@ -1,0 +1,232 @@
+
+ USAGE: QUERYTSV tsvFile [options] [operands] [conditions] [fields]
+
+ type  QUERYTSV -h1   for overview.
+ type  QUERYTSV -h2   for help with options. (below)
+ type  QUERYTSV -h3   for help with operands.
+ type  QUERYTSV -h4   for help with conditions.
+ type  QUERYTSV -h5   for help with fields.
+ type  QUERYTSV -h6   for examples.
+ type  QUERYTSV -h7   for pseudo-quasi-lazy BNF for fields & values.
+
+ [options]:
+
+    -c        - Case sensitive comparisons.
+    -r        - Regular expr matching (* and ? only).
+    -k        - Clip leading/trailing whitespace before compare.
+    -b        - Bracket output columns. Useful for seeing whitespace.
+    -l        - 1st line in file is Column Labels, so read em.
+    -l=file   - label names are contained in this file, 1 per line.
+    -a        - List labels only. (Implies -l).
+    -n        - Nologo, quiet mode, no stats or header line.
+    -e=#      - Number of decimals to print for math expr results.
+    -0        - Math errors return 0 rather than <invalid>.
+    -d=#      - Set delimeter char to # (use ascii val or char) or 'd=col'.
+    -outd=#   - Set delimeter char for output (use 0 for none)'.
+    -q=#      - Quit after reading # lines.
+    -m=#      - Quit after # matches.
+    -i        - Use stdin for input file. default is 1st param.
+    -s=#      - Write Stats to stderr after every # lines read.
+    -omf=file - Output matching record fields to this file (default=stdout).
+    -oml=file - Output matching record lines unmodified (default=none).
+    -onf=file - Output non-matching record fields to this file (default=none).
+    -onl=file - Output non-matching record lines unmodified (default=none).
+    -f=file   - Retrieve rest of command line from this file.
+    -j=#      - Start at this byte offset.
+    -_        - Treat _ on cmd line as spaces.
+    -x=file   - Load This Translation file (file w 2 cols).
+    -xsize=#  - Maximum lines in Xlate File.
+    -abort    - Abort on keypress.
+    -fp       - Show file pos in stat line.
+    -PClass=# - Set priority class.
+    -PDelta=# - Set priority delta.
+    -z=define - Initialize expr variables.
+
+ Options modify the default behavior of the program. Options with no values
+ can be combined. (I.E. -crnk is legal).
+ USAGE: QUERYTSV tsvFile [options] [operands] [conditions] [fields]
+
+ [overview]:
+
+ This program lets you do simple queries on a Tab Separated Value (TSV) file.
+ You supply conditions on the command line, and combine those conditions
+ using operands, and if the result evaluates to TRUE, text is produced.
+ The conditions are evaluated once for each line in the input file, and the
+ data for the current line is used in the conditions and in the output text.
+ The actual text produced is specified in the fields section.  See individual
+ help sections for more information.
+
+ Command line parameters may also be specified by using the QUERYTSV env var.
+ USAGE: QUERYTSV tsvFile [options] [operands] [conditions] [fields]
+
+ [options]:
+
+    -c        - Case sensitive comparisons.
+    -r        - Regular expr matching (* and ? only).
+    -k        - Clip leading/trailing whitespace before compare.
+    -b        - Bracket output columns. Useful for seeing whitespace.
+    -l        - 1st line in file is Column Labels, so read em.
+    -l=file   - label names are contained in this file, 1 per line.
+    -a        - List labels only. (Implies -l).
+    -n        - Nologo, quiet mode, no stats or header line.
+    -e=#      - Number of decimals to print for math expr results.
+    -0        - Math errors return 0 rather than <invalid>.
+    -d=#      - Set delimeter char to # (use ascii val or char) or 'd=col'.
+    -outd=#   - Set delimeter char for output (use 0 for none)'.
+    -q=#      - Quit after reading # lines.
+    -m=#      - Quit after # matches.
+    -i        - Use stdin for input file. default is 1st param.
+    -s=#      - Write Stats to stderr after every # lines read.
+    -omf=file - Output matching record fields to this file (default=stdout).
+    -oml=file - Output matching record lines unmodified (default=none).
+    -onf=file - Output non-matching record fields to this file (default=none).
+    -onl=file - Output non-matching record lines unmodified (default=none).
+    -f=file   - Retrieve rest of command line from this file.
+    -j=#      - Start at this byte offset.
+    -_        - Treat _ on cmd line as spaces.
+    -x=file   - Load This Translation file (file w 2 cols).
+    -xsize=#  - Maximum lines in Xlate File.
+    -abort    - Abort on keypress.
+    -fp       - Show file pos in stat line.
+    -PClass=# - Set priority class.
+    -PDelta=# - Set priority delta.
+    -z=define - Initialize expr variables.
+
+ Options modify the default behavior of the program. Options with no values
+ can be combined. (I.E. -crnk is legal).
+ USAGE: QUERYTSV tsvFile [options] [operands] [conditions] [fields]
+
+ [operands]:
+
+    & - AND result of next condition with result so far.
+    ! - OR  result of next condition with result so far.
+    ~ - XOR result of next condition with result so far.
+
+ Operands specify the relationship between conditions.
+ Operands do not need to be specified between each condition.  The last
+ operand specified is used until it is changed.  The default operand 
+ is &.  Also note that precidence is LEFT TO RIGHT, and that
+ there is no way to override this precedence.  If you cannot construct
+ your query with this limitation, you can pipe the output of a partial
+ quert into another instance of this prog...
+ USAGE: QUERYTSV tsvFile [options] [operands] [conditions] [fields]
+
+ [conditions]:
+
+ conditions are of the form [value][test][value]
+
+ tests can be one of:
+    .EQ.  - Equal                       .NEQ.  -  Numeric comparisons
+    .NE.  - Not equal                   .NNE.  -   with the same meaning
+    .LT.  - Less than                   .NLT.  -
+    .GT.  - Greater than                .NGT.  -
+    .LE.  - Less than or equal          .NLE.  -
+    .GE.  - Greater than or equal       .NGE.  -
+
+ Use the tests on the left for strings, and the tests on the right for numeric. 
+
+ values can be one of
+    #n     - The data in this field (#5 for example, 1st col is 1).
+    #Label - Data field specified by name (you need the -l option).
+    ##n    - The data in this field from the previous line.
+    ##Label- Data field specified by name in thew previous line.
+    #~n    - Translate this col through xlate file, no match=pass thru.
+    #!n    - Translate this col through xlate file, no match=no data.
+    #0     - This special column means means the line number.
+    Text   - Plain ole text to compare with.
+    regexp - Text with '*' and/or '?' (you need the -r option).
+    @expr  - Math expression. #n, #Label ok. (ex @log(#1)*6).
+
+ Values have a number of restrictions:  You will need to use a data column
+ (ie #5 or #Label) for at least one of the 2 values or the condition will
+ be invariant.  If you use the #Label format, you must use the -l option
+ and the text 'Label' must actually be in the first line, or you will get
+ an error.  If you use the regexp format, you must use the -r option (which
+ is slower).  Furthermore, regexp values must only be used for the right value
+ (? and * are treated as normal chars for the left value), and finally,
+ regexp conditions only make sense when used with the .EQ. and .NE. tests.
+ Values of the format @expr are slow.  This format allows you to create a
+ math expression using the data.  Expressions must have a @ as the first char,
+ and may not contain imbedded blanks.  All standard operands and functions are
+ valid, plus lots of others which I won't admit.  See examples.
+ USAGE: QUERYTSV tsvFile [options] [operands] [conditions] [fields]
+
+ [fields]:
+
+ fields specify what to print.  fields are of the form:
+
+    #n     - The data in this field (#5 for example, 1st col is 1).
+    #Label - Data field specified by name (you need the -l option).
+    ##n    - The data in this field from the previous line.
+    ##Label- Data field specified by name in thew previous line.
+    #~n    - Translate this col through xlate file, no match=pass thru.
+    #!n    - Translate this col through xlate file, no match=no data.
+    Text   - Plain ole text to print.
+    *      - Print all fields for the current line.
+    $      - Print all in a 1 field per line, labeled format.
+    #0     - This special column means print the line number.
+    @expr  - Math expression. #n, #Label ok. (ex @#Cost*1.05+#Extra).
+    #n-#m  - Print this range of columns.
+ Look at the conditions help section for more info, because fields
+ are actually the same datatype as a values.
+ USAGE: QUERYTSV tsvFile [options] [operands] [conditions] [fields]
+
+ examples:
+
+ QUERYTSV data.tsv #1.EQ.FRED #2.NE.SAM *
+
+   the file data.tsv is read 1 line at a time, if the first col is 'FRED' and
+   the 2nd col is not 'SAM' then the entire line is written to stdout.
+
+ QUERYTSV data.csv -d=, -lcr #Desc.EQ.*MONEY* #Cost.NGT.500 #0 #1-#8
+
+   data.csv has commas (=d-,) separating fields, and the first line contains
+   labels (-l). compares are case sensitive (-c), and wildcards are allowed 
+   (-r).  If the Desc col has 'MONEY' as part of the string and the Cost col
+   > 500, then the line number and the data columns 1 thru 8 are printed.
+
+ QUERYTSV Minval: -ib #5 MaxVal: #6 Tot: #9  
+
+   reads from stdin (-i) and writes to stdout.  Output cols are enclosed in
+   brackets (-b).  There are no conditions, so every line is processed.  the
+   text 'Minval:' is printed, then the data in column 5, ...
+
+ QUERYTSV data.csv -d=, #1.EQ.IT1 | #1.EQ.IT2 & #2.NLE.#3 * -onl otherdat.tsv
+
+   the entire line is written to stdout if col 1 is 'IT1' or 'IT2' and the 
+   numeric value in col 2 is less than or equal to the val in col 3.  The lines
+   that don't match are sent to the file otherdat.tsv.
+
+ QUERYTSV data.tsv -onl=stdout | #5.EQ.#6 #5.EQ.#7 #6.EQ.#7 #1-#3 @#4*10 #5-#10
+
+   Output for both matching fields and non matching lines is sent to stdout.
+   if col 5 = col 6 or col 5 = col 7 or col 6 = col7, then cols 1 thru 3, col
+   4's value multiplied by 10, and columns 5 thru 10 are printed.  If the
+   condition is false, the line is printed unmodified, also to stdout.
+
+ QUERYTSV data.tsv @#5*3.NEQ.@sin(#6) @211^#2/#3
+
+   If the value of col 5 multiplied by 3 is numerically equal to the sine of 
+   the value of col 6, then print out the result of 211 to the power of the
+   value of col 2 divided by the value of column 3.  Right?
+
+ QUERYTSV a.TSV -z@bob=1000 -e0 @@bob=@bob-2 *
+
+   -z sets the expression var @bob to 1000.  For each row, @bob is decremented
+   by 2 and printed, along with the row's data.  Expr vars are vars whose names
+   start with a @.  They may be assigned and used within a value expression.
+   The -z option is a param used to eval expressions only once.
+ USAGE: QUERYTSV tsvFile [options] [operands] [conditions] [fields]
+
+ Pseudo BNF for [fields] and [values]:
+
+ *field*   = *value* [ '-' *value*]
+ *value*   = { DATACOLUMN | text | REGEXP | EXPR}
+ DATACOL   = { ['#' ['#'] [ '~' | '!']] { ColumnNumber | ColumnName}}
+ REGEXP    = { text | '*' | '?' } ...
+ EXPR      = { '@' {ID [OPERAND ID] ... | ASSIGNMENT} }
+ ASSIGNMENT= { VARNAME = EXPR }
+ OPERAND   = { '+' | '-' | '*' | '/' | '^' }
+ ID        = { Name | DATACOL | VARNAME | FUNCTION }
+ VARNAME   = { '@' Name
+ FUNCTION  = { {'sin' | 'log'} '(' EXPR ')' }  + lots of other functions

@@ -1,0 +1,29 @@
+PREMAKE makefile generation utility                       v1.2  May 11 1995 
+
+USAGE: PREMAKE [options] InFile [OutFile]
+
+WHERE: options are 0 or more of:
+
+          /Depth=# ... # lines to read searching for includes (def=200)
+          /Strict .... Die if file is not found.
+          /NoTest .... Dont look for Include file existance.
+          /Debug ..... Dubug info.
+          /AddDot .... Add dot to ext. (for compatibility).
+          
+PREMAKE commands recognized in input file:
+
+   :FILELIST   ListName     = { filename1,filename2, .... ,filenameN }
+   :CMDLIST    CmdListName  = { commandline1, ... ,commandlineN } 
+   :EXPAND     ListName,CmdListName,Path1,Ext1,Path2,Ext2[,INC|NOI|NOD|PLI]
+   :MAKELIST   ListName,MacroBaseName,Path,Ext
+   :INCLUDE    FileName
+
+   :INCLUDELIST path;path;path...
+
+   {C: CmdListName} .............. Expand to commands
+   {I: Filename} ................. Expand to #include names
+   {P: Filename} ................. Expand to %include names
+   {F: ListName,Path,Ext} .... Expand to file names
+   {L: ListName,Path,Ext[,ct]} Expand to file names (breaks lines & adds +)
+   {X: ListName,Path,Ext,delim,prefix,ct} Expand to file names (breaks lines...)
+   {M: MacroBaseName} ............ Expand to $(macro names)

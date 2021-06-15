@@ -1,0 +1,12 @@
+md devutil
+md datautil
+md htmlutil
+md genutil
+md hdutil
+md projutil
+copy index.htm devutil
+copy index.htm datautil
+copy index.htm htmlutil
+copy index.htm genutil
+copy index.htm hdutil
+copy index.htm projutil

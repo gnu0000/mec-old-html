@@ -1,0 +1,10 @@
+
+BHTrim    Bid History Trim Utility,      Ver 2.01     (c)1990, Info Tech, Inc.
+
+USAGE:  BHTRIM  [InitFile]  DataFile
+
+WHERE:  InitFile contains info about the district files to be generated.
+          (InitFile defaults to BHTRIM.INI if not specified)
+        DataFile contains the Bid History source data.
+
+        See the InitFile BHTRIM.INI for more information and examples.

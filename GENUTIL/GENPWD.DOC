@@ -1,0 +1,28 @@
+GenPWD Password Generator v1.0                                Aug 23 1995
+
+USAGE: GenPWD [options] NumPasswords
+
+WHERE: NumPasswords .... Is the number of passwords to generate.
+       [options1] are 0 or more of:
+         /NumWords=# ..... Number of words in each password. [2] 
+         /MinSize=# ...... Minimum size of password. [7] 
+         /MaxSize=# ...... Maximum Size of password. [16]
+         /Prefix=str ..... String to prepend to password.
+         /Suffix=str ..... String to append to password.
+         /Separator[=str]. Separator between words. [.] use no = for none.
+         /Cut ............ Cut String to fit max size.
+         /Upper .......... Uppercase the password.
+         /Seed=# ......... Set random starting seed.
+         /WordsFile=file . Use alternate words file. [words]
+
+   # in password are changed to a random digit.
+   @ in password are changed to a random character.
+
+EXAMPLES:
+  genpwd 10
+  genpwd 500 /MaxSize=7 /MinSize=7 /NumWords=1 /Suf=# /Pre=#
+  genpwd 100 /Max=7 /Min=7 /Num=1 /Suffix=##@
+  genpwd 15 /Max=40 /Num=5
+  genpwd 50 /Min=20 /Max=40 /Num=3 /Upper /Sep
+  genpwd 15 /Max=40 /Num=5 /Sep=#
+  genpwd 50 /Pre=@@@### /Cut /Max=6 /Num=1

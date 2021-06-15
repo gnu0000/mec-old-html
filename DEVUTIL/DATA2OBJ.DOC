@@ -1,0 +1,34 @@
+Data2Obj  Data File Compiler v2.1                                Nov 10 1995
+
+USAGE#1:  Data2Obj [options1] datfile [objfile]
+
+USAGE#2:  Data2Obj [options2] /Source=Sourcefile [objfile]
+
+WHERE:  datfile .... Is the name of the file containing variable declarations.
+        objfile .... If specified, is the name of the object file.
+                     If not given, the input file + '.obj' is used.
+
+        [options1] are 0 or more of:
+           /? ................ This help.
+           /HelpDat .......... Help with the datfile format.
+           /Header[=hname] ... Create Header file, hname is optional.
+           /Sizes ............ Create variable size #defines in header.
+           /Verbose .......... Display info during compile.
+           /Alignment=# ...... Align Data on 1,2,4 or 16 byte boundries.
+           /StartSeg=# ....... 1st created segment will have this index.
+           /Debug ............ Debug stuff, currently does nothing.
+
+        [options2] are the same as [options1] plus:
+           /Variable=varname . Variable Name (Default is Var).
+           /SegName=segname .. Segment Name  (Default is a new seg).
+           /Type=typename .... Data Type (Default is CHAR).
+
+Usage #1 uses a DAT file to gather information and data for variables.  A DAT
+file is structured like a INI file.  Standard C character conversions of the
+form \n and \x1A are performed on the text in this file.  Type
+'Data2Obj /HelpDat' for the format of the dat file.
+
+Usage #2 uses an entire file as the contents of a variable.  Variable
+information must be specified on the command line.  No character conversions
+are performed on the variable data.
+

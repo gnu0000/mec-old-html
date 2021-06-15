@@ -1,0 +1,37 @@
+PRINTC          file printing utility  v1.1       10:26:07  Dec 13 1994
+ 
+USAGE: PRINTC  [options] [@ConfigFile] [#Extension] FileNames
+ 
+WHERE: FileNames .... The list of files to print (wildcards ok)
+ 
+       @ConfigFile .. The configuration file which, if not specified here,
+                       must be named PRINTC.CFG and must be located in either
+                       the current dir, the location specified by path variable
+                       PRINTC=, or in the same path as the .exe file.
+ 
+       #Extension ... The config file extension override. The config file is
+                       assumed to have a CFG extension unless overridden here.
+                       The search order is still Current Dir, Env Dir, Exe Dir
+ 
+       options ...... These override settings in the config file 
+                                                               
+          -BodyWidth   = #             | These options, and, others may also
+          -Chop        = #,#,#         | be present in the config file. See
+          -EndPage     = #             | the documentation in the config
+          -Even        = True | False  | file PRINTC.CFG for thier use.
+          -Footer      = True | False  | 
+          -FooterWidth = #             | 
+          -Header      = True | False  | These options may be minimally
+          -HeaderWidth = #             | specified on the command line. I.E.
+          -IgnoreFF    = True | False  | -le=5 is legal because le will
+          -LeftMargin  = #             | match exactly one parameter.
+          -LineNumbers = True | False  |                        
+          -Odd         = True | False  |                        
+          -OutFile     = filespec      |                        
+          -PageFF      = True | False  |                        
+          -PageLength  = #             |                        
+          -RightMargin = #             |                        
+          -StartPage   = #             |                        
+          -TopLines    = #             |                        
+          -Truncate    = True | False  |                        
+                        
